@@ -110,51 +110,123 @@
                                 android:src="@android:drawable/ic_menu_manage"
                                 app:tint="@color/text_tertiary" />
 
-                            <LinearLayout
-                                android:id="@+id/sectionAccidentDetection"
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/btnDetection"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/spacing_xlarge"
-                                android:background="@drawable/rounded_white_bg"
-                                android:gravity="center_vertical"
-                                android:minHeight="72dp"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/spacing_normal"
-                                android:foreground="?attr/selectableItemBackground">
-
-                                <ImageView
-                                    android:layout_width="@dimen/icon_medium"
-                                    android:layout_height="@dimen/icon_medium"
-                                    android:background="@drawable/circle_background"
-                                    android:backgroundTint="@color/emergency_light"
-                                    android:contentDescription="Accident Detection"
-                                    android:padding="@dimen/spacing_small"
-                                    android:src="@drawable/ic_emergency"
-                                    app:tint="@color/emergency_red" />
+                                app:cardCornerRadius="@dimen/card_radius_normal"
+                                app:cardElevation="@dimen/elevation_low"
+                                android:clickable="true"
+                                android:focusable="true">
 
                                 <LinearLayout
-                                    android:layout_width="0dp"
+                                    android:id="@+id/sectionAccidentDetection"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/spacing_normal"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
+                                    android:background="@drawable/rounded_white_bg"
+                                    android:gravity="center_vertical"
+                                    android:minHeight="72dp"
+                                    android:orientation="horizontal"
+                                    android:padding="@dimen/spacing_normal"
+                                    android:foreground="?attr/selectableItemBackground">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/action_test_accident"
-                                        android:textAppearance="@style/TextAppearance.App.Title"
-                                        android:textColor="@color/text_primary" />
+                                    <ImageView
+                                        android:id="@+id/ivDetectionIcon"
+                                        android:layout_width="@dimen/icon_medium"
+                                        android:layout_height="@dimen/icon_medium"
+                                        android:background="@drawable/circle_background"
+                                        android:backgroundTint="@color/emergency_light"
+                                        android:contentDescription="Accident Detection"
+                                        android:padding="@dimen/spacing_small"
+                                        android:src="@drawable/ic_emergency"
+                                        app:tint="@color/emergency_red" />
 
-                                    <TextView
-                                        android:id="@+id/tvDetectionStatus"
-                                        android:layout_width="wrap_content"
+                                    <LinearLayout
+                                        android:layout_width="0dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="4dp"
-                                        android:text="Accident simulation ready"
-                                        android:textAppearance="@style/TextAppearance.App.Body.Small" />
+                                        android:layout_marginStart="@dimen/spacing_normal"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/action_test_accident"
+                                            android:textAppearance="@style/TextAppearance.App.Title"
+                                            android:textColor="@color/text_primary" />
+
+                                        <TextView
+                                            android:id="@+id/tvDetectionStatus"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="4dp"
+                                            android:text="Accident simulation ready"
+                                            android:textAppearance="@style/TextAppearance.App.Body.Small" />
+                                    </LinearLayout>
                                 </LinearLayout>
-                            </LinearLayout>
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/cardLocationStatus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_normal"
+                                app:cardCornerRadius="@dimen/card_radius_normal"
+                                app:cardElevation="@dimen/elevation_low"
+                                android:clickable="true"
+                                android:focusable="true">
+
+                            <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/rounded_white_bg"
+                                    android:gravity="center_vertical"
+                                    android:minHeight="72dp"
+                                    android:orientation="horizontal"
+                                    android:padding="@dimen/spacing_normal"
+                                    android:foreground="?attr/selectableItemBackground">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/icon_medium"
+                                        android:layout_height="@dimen/icon_medium"
+                                        android:background="@drawable/circle_background"
+                                        android:backgroundTint="@color/success_light"
+                                        android:contentDescription="Location Status"
+                                        android:padding="@dimen/spacing_small"
+                                        android:src="@android:drawable/ic_menu_mylocation"
+                                        app:tint="@color/success_green" />
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/spacing_normal"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Auto Location Sharing"
+                                            android:textAppearance="@style/TextAppearance.App.Title"
+                                            android:textColor="@color/text_primary" />
+
+                                        <TextView
+                                            android:id="@+id/tvLocationStatus"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="4dp"
+                                            android:text="@string/location_gps_inactive"
+                                            android:textAppearance="@style/TextAppearance.App.Body.Small" />
+                                    </LinearLayout>
+
+                                    <androidx.appcompat.widget.SwitchCompat
+                                        android:id="@+id/switchLocation"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:checked="false" />
+                                </LinearLayout>
+                            </com.google.android.material.card.MaterialCardView>
 
                             <LinearLayout
                                 android:id="@+id/sectionMedicalInfo"
@@ -224,51 +296,61 @@
                                 </LinearLayout>
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:id="@+id/sectionEmergencyContacts"
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/cardEmergencyContacts"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/spacing_normal"
-                                android:background="@drawable/rounded_white_bg"
-                                android:gravity="center_vertical"
-                                android:minHeight="72dp"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/spacing_normal"
-                                android:foreground="?attr/selectableItemBackground">
-
-                                <ImageView
-                                    android:layout_width="@dimen/icon_medium"
-                                    android:layout_height="@dimen/icon_medium"
-                                    android:background="@drawable/circle_background"
-                                    android:backgroundTint="@color/emergency_light"
-                                    android:contentDescription="Emergency contacts"
-                                    android:padding="@dimen/spacing_small"
-                                    android:src="@drawable/ic_contacts"
-                                    app:tint="@color/emergency_red" />
+                                app:cardCornerRadius="@dimen/card_radius_normal"
+                                app:cardElevation="@dimen/elevation_low"
+                                android:clickable="true"
+                                android:focusable="true">
 
                                 <LinearLayout
-                                    android:layout_width="0dp"
+                                    android:id="@+id/sectionEmergencyContacts"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/spacing_normal"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
+                                    android:background="@drawable/rounded_white_bg"
+                                    android:gravity="center_vertical"
+                                    android:minHeight="72dp"
+                                    android:orientation="horizontal"
+                                    android:padding="@dimen/spacing_normal"
+                                    android:foreground="?attr/selectableItemBackground">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/emergency_contacts_card"
-                                        android:textAppearance="@style/TextAppearance.App.Title"
-                                        android:textColor="@color/text_primary" />
+                                    <ImageView
+                                        android:layout_width="@dimen/icon_medium"
+                                        android:layout_height="@dimen/icon_medium"
+                                        android:background="@drawable/circle_background"
+                                        android:backgroundTint="@color/emergency_light"
+                                        android:contentDescription="Emergency contacts"
+                                        android:padding="@dimen/spacing_small"
+                                        android:src="@drawable/ic_contacts"
+                                        app:tint="@color/emergency_red" />
 
-                                    <TextView
-                                        android:id="@+id/tvContactsCount"
-                                        android:layout_width="wrap_content"
+                                    <LinearLayout
+                                        android:layout_width="0dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="4dp"
-                                        android:text="@string/no_contacts_msg"
-                                        android:textAppearance="@style/TextAppearance.App.Body.Small" />
+                                        android:layout_marginStart="@dimen/spacing_normal"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/emergency_contacts_card"
+                                            android:textAppearance="@style/TextAppearance.App.Title"
+                                            android:textColor="@color/text_primary" />
+
+                                        <TextView
+                                            android:id="@+id/tvContactsCount"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="4dp"
+                                            android:text="@string/no_contacts_msg"
+                                            android:textAppearance="@style/TextAppearance.App.Body.Small" />
+                                    </LinearLayout>
                                 </LinearLayout>
-                            </LinearLayout>
+                            </com.google.android.material.card.MaterialCardView>
 
                             <LinearLayout
                                 android:id="@+id/sectionNearestHospital"
@@ -314,6 +396,55 @@
                                         android:textAppearance="@style/TextAppearance.App.Body.Small" />
                                 </LinearLayout>
                             </LinearLayout>
+
+                            <!-- Action Buttons -->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnEmergencyCall"
+                                style="@style/Widget.App.Button.Emergency"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_xlarge"
+                                android:text="@string/action_emergency_call" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnTestAccident"
+                                style="@style/Widget.App.Button.Primary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_normal"
+                                android:text="@string/action_test_accident" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnShareDetails"
+                                style="@style/Widget.App.Button.Primary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_normal"
+                                android:text="@string/action_share_details" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnEditProfile"
+                                style="@style/Widget.App.Button.Primary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_normal"
+                                android:text="@string/action_edit_profile" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnManageContacts"
+                                style="@style/Widget.App.Button.Primary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_normal"
+                                android:text="@string/action_manage_contacts" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnFindHospitals"
+                                style="@style/Widget.App.Button.Primary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_normal"
+                                android:text="@string/action_find_hospitals" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 

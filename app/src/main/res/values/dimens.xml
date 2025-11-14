@@ -12,6 +12,7 @@
 
     <!-- Card Properties - Modern Medical Style (16-24dp) -->
     <dimen name="card_radius">20dp</dimen>
+    <dimen name="card_radius_normal">16dp</dimen>
     <dimen name="card_radius_large">24dp</dimen>
     <dimen name="card_radius_small">16dp</dimen>
     <dimen name="card_elevation">4dp</dimen>

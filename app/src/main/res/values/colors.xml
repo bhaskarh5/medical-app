@@ -25,6 +25,8 @@
     <color name="accent_green">#00C896</color>
     <color name="accent_green_dark">#00A076</color>
     <color name="accent_green_light">#B3F5E5</color>
+    <color name="success_green">#00C896</color>
+    <color name="success_light">#E8F8F3</color>
     <color name="green_gradient_start">#33D6AB</color>
     <color name="green_gradient_end">#00C896</color>
 

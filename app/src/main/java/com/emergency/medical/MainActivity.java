@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         tvWelcome = findViewById(R.id.tvWelcome);
         tvName = findViewById(R.id.tvName);
         tvDetectionStatus = findViewById(R.id.tvDetectionStatus);
-        tvLocationStatus = findViewById(R.id.tvLocationStatus);
+         tvLocationStatus = findViewById(R.id.tvLocationStatus);
         tvContactsCount = findViewById(R.id.tvContactsCount);
         tvPatientId = findViewById(R.id.tvPatientId);
         tvAge = findViewById(R.id.tvAge);
