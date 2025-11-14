@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Patient Lookup</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .search-box {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 3px solid #667eea;
+        }
+        input {
+            width: 100%;
+            padding: 18px;
+            font-size: 20px;
+            border: 2px solid #cbd5e1;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        button {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .status {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: 500;
+        }
+        .success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 3px solid #10b981;
+        }
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 3px solid #dc2626;
+        }
+        .info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 3px solid #3b82f6;
+        }
+        .patient-data {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        .data-row {
+            display: flex;
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            align-items: center;
+        }
+        .data-row:last-child {
+            border-bottom: none;
+        }
+        .data-label {
+            font-weight: bold;
+            color: #667eea;
+            width: 200px;
+            font-size: 16px;
+        }
+        .data-value {
+            flex: 1;
+            color: #1e293b;
+            font-size: 16px;
+        }
+        .section-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 30px 0 15px 0;
+        }
+        .quick-id {
+            background: #fffbeb;
+            border: 3px solid #f59e0b;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .quick-id h3 {
+            color: #92400e;
+            margin: 0 0 10px 0;
+        }
+        .quick-id p {
+            color: #78350f;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        .quick-id .id-display {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            color: #667eea;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🏥 Emergency Medical Portal</h1>
+    <p class="subtitle">Quick Patient Information Lookup</p>
+
+    <div id="connectionStatus" class="status info">
+        <strong>⏳ Initializing...</strong><br>
+        Connecting to Firebase...
+    </div>
+
+    <div class="quick-id">
+        <h3>🔍 Your Patient ID:</h3>
+        <div class="id-display">EMG-7B65-2C93-C8D1</div>
+        <p style="margin-top: 15px;">👆 This is your Patient ID from Firebase</p>
+        <button onclick="lookupMyPatient()"
+                style="width: auto; padding: 12px 30px; font-size: 16px; margin-top: 10px;">
+            🚀 Load My Data
+        </button>
+    </div>
+
+    <div class="search-box">
+        <h3 style="margin-top: 0; color: #667eea;">Or search for any Patient ID:</h3>
+        <input type="text"
+               id="patientId"
+               placeholder="EMG-XXXX-XXXX-XXXX"
+               value="EMG-7B65-2C93-C8D1">
+        <button onclick="lookupPatient()">🔍 Search Patient</button>
+    </div>
+
+    <div id="resultStatus"></div>
+    <div id="patientInfo"></div>
+</div>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+<script>
+
+const firebaseConfig = {
+    apiKey: "AIzaSyC-NYOlKhFKQGsQR310oYIqjrVkiiNCaDw",
+    authDomain: "emergencymedical-a43a9.firebaseapp.com",
+    databaseURL: "https://emergencymedical-a43a9-default-rtdb.firebaseio.com",
+    projectId: "emergencymedical-a43a9",
+    storageBucket: "emergencymedical-a43a9.firebasestorage.app",
+    messagingSenderId: "493706183621",
+    appId: "1:493706183621:web:d1d0aeac356e53004cc1ac"
+};
+
+let database;
+let isConnected = false;
+
+window.addEventListener('DOMContentLoaded', function() {
+    const statusDiv = document.getElementById('connectionStatus');
+    
+    try {
+        if (typeof firebase === 'undefined') {
+            statusDiv.className = 'status error';
+            statusDiv.innerHTML = '<strong>❌ ERROR:</strong> Firebase scripts blocked by your network/antivirus.<br><br>' +
+                                  '<strong>Solution:</strong><br>' +
+                                  '1. Try opening in Incognito mode (Ctrl+Shift+N)<br>' +
+                                  '2. Try a different browser<br>' +
+                                  '3. Deploy website to Netlify: <a href="https://app.netlify.com/drop" target="_blank">app.netlify.com/drop</a>';
+            return;
+        }
+        
+        firebase.initializeApp(firebaseConfig);
+        database = firebase.database();
+        isConnected = true;
+        
+        statusDiv.className = 'status success';
+        statusDiv.innerHTML = '<strong>✅ Connected to Firebase!</strong><br>' +
+                              'Your Patient ID: <strong>EMG-7B65-2C93-C8D1</strong> is ready to search!';
+        
+    } catch (error) {
+        statusDiv.className = 'status error';
+        statusDiv.innerHTML = '<strong>❌ ERROR:</strong> ' + error.message;
+    }
+});
+
+function lookupMyPatient() {
+    document.getElementById('patientId').value = 'EMG-7B65-2C93-C8D1';
+    lookupPatient();
+}
+
+function lookupPatient() {
+    const patientId = document.getElementById('patientId').value.trim().toUpperCase();
+    const statusDiv = document.getElementById('resultStatus');
+    const infoDiv = document.getElementById('patientInfo');
+    
+    if (!patientId) {
+        statusDiv.className = 'status error';
+        statusDiv.innerHTML = '❌ Please enter a Patient ID';
+        return;
+    }
+    
+    if (!isConnected) {
+        statusDiv.className = 'status error';
+        statusDiv.innerHTML = '❌ Not connected to Firebase. Check connection status above.';
+        return;
+    }
+    
+    statusDiv.className = 'status info';
+    statusDiv.innerHTML = '⏳ Searching for: ' + patientId + '...';
+    infoDiv.innerHTML = '';
+    
+    database.ref('patients/' + patientId).once('value')
+        .then(function(snapshot) {
+            if (snapshot.exists()) {
+                const patient = snapshot.val();
+                
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = '<strong>✅ PATIENT FOUND!</strong><br>Displaying medical information...';
+                
+                let html = '';
+                
+                // Personal Information
+                if (patient.personalInfo) {
+                    html += '<div class="section-title">👤 Personal Information</div>';
+                    html += '<div class="patient-data">';
+                    html += '<div class="data-row"><div class="data-label">Patient ID:</div><div class="data-value">' + patientId + '</div></div>';
+                    html += '<div class="data-row"><div class="data-label">Name:</div><div class="data-value">' + (patient.personalInfo.name || 'N/A') + '</div></div>';
+                    html += '<div class="data-row"><div class="data-label">Age:</div><div class="data-value">' + (patient.personalInfo.age || 'N/A') + '</div></div>';
+                    html += '<div class="data-row"><div class="data-label">Blood Group:</div><div class="data-value"><strong style="color: #dc2626; font-size: 20px;">' + (patient.personalInfo.bloodGroup || 'N/A') + '</strong></div></div>';
+                    html += '<div class="data-row"><div class="data-label">Address:</div><div class="data-value">' + (patient.personalInfo.address || 'N/A') + '</div></div>';
+                    html += '</div>';
+                }
+                
+                // Medical Information
+                if (patient.medicalInfo) {
+                    html += '<div class="section-title">💊 Medical Information</div>';
+                    html += '<div class="patient-data">';
+                    html += '<div class="data-row"><div class="data-label">Allergies:</div><div class="data-value" style="color: #dc2626; font-weight: bold;">' + (patient.medicalInfo.allergies || 'None') + '</div></div>';
+                    html += '<div class="data-row"><div class="data-label">Medications:</div><div class="data-value">' + (patient.medicalInfo.medications || 'None') + '</div></div>';
+                    html += '<div class="data-row"><div class="data-label">Chronic Conditions:</div><div class="data-value">' + (patient.medicalInfo.chronicConditions || 'None') + '</div></div>';
+                    html += '<div class="data-row"><div class="data-label">Doctor Name:</div><div class="data-value">' + (patient.medicalInfo.doctorName || 'N/A') + '</div></div>';
+                    html += '<div class="data-row"><div class="data-label">Doctor Phone:</div><div class="data-value"><a href="tel:' + (patient.medicalInfo.doctorPhone || '') + '">' + (patient.medicalInfo.doctorPhone || 'N/A') + '</a></div></div>';
+                    html += '</div>';
+                }
+                
+                // Emergency Contacts
+                if (patient.emergencyContacts && patient.emergencyContacts.length > 0) {
+                    html += '<div class="section-title">📞 Emergency Contacts</div>';
+                    html += '<div class="patient-data">';
+                    patient.emergencyContacts.forEach(function(contact) {
+                        html += '<div class="data-row">';
+                        html += '<div class="data-label">' + contact.name + (contact.isPrimary ? ' (PRIMARY)' : '') + ':</div>';
+                        html += '<div class="data-value"><a href="tel:' + contact.phone + '">' + contact.phone + '</a></div>';
+                        html += '</div>';
+                    });
+                    html += '</div>';
+                }
+                
+                // Location
+                if (patient.location) {
+                    html += '<div class="section-title">📍 Location</div>';
+                    html += '<div class="patient-data">';
+                    html += '<div class="data-row"><div class="data-label">Latitude:</div><div class="data-value">' + patient.location.latitude + '</div></div>';
+                    html += '<div class="data-row"><div class="data-label">Longitude:</div><div class="data-value">' + patient.location.longitude + '</div></div>';
+                    html += '<div class="data-row"><div class="data-label">Google Maps:</div><div class="data-value"><a href="https://www.google.com/maps?q=' + patient.location.latitude + ',' + patient.location.longitude + '" target="_blank">Open in Maps</a></div></div>';
+                    html += '</div>';
+                }
+                
+                infoDiv.innerHTML = html;
+                
+            } else {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = '<strong>❌ PATIENT NOT FOUND</strong><br>Patient ID: ' + patientId + ' does not exist in the database.';
+                infoDiv.innerHTML = '';
+            }
+        })
+        .catch(function(error) {
+            statusDiv.className = 'status error';
+            statusDiv.innerHTML = '<strong>❌ ERROR:</strong> ' + error.code + '<br>' + error.message;
+            infoDiv.innerHTML = '';
+        });
+}
+
+// Auto-uppercase input
+document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('patientId');
+    if (input) {
+        input.addEventListener('input', function() {
+            this.value = this.value.toUpperCase();
+        });
+    }
+});
+</script>
+</body>
+</html>

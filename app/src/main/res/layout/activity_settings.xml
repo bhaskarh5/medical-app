@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <!-- Top Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/background_light"
+        android:padding="@dimen/spacing_normal"
+        android:gravity="center_vertical"
+        android:elevation="@dimen/elevation_medium">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="@dimen/touch_target_min"
+            android:layout_height="@dimen/touch_target_min"
+            android:src="@drawable/ic_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/text_secondary"
+            android:contentDescription="Back" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/settings_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginStart="@dimen/spacing_small" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_normal">
+
+            <!-- Toggles Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="@dimen/card_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <!-- Accident Detection Toggle -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_emergency"
+                            app:tint="@color/primary_blue"
+                            android:contentDescription="Detection" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:text="@string/accident_detection_toggle"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchDetection"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            app:thumbTint="@color/white"
+                            app:trackTint="@color/primary_blue" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/divider" />
+
+                    <!-- Voice Alert Toggle -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@android:drawable/ic_btn_speak_now"
+                            app:tint="@color/primary_blue"
+                            android:contentDescription="Voice" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:text="@string/voice_alert_toggle"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchVoice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            app:thumbTint="@color/white"
+                            app:trackTint="@color/primary_blue" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/divider" />
+
+                    <!-- Auto Location Toggle -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@android:drawable/ic_menu_mylocation"
+                            app:tint="@color/primary_blue"
+                            android:contentDescription="Location" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:text="@string/auto_location_toggle"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            app:thumbTint="@color/white"
+                            app:trackTint="@color/primary_blue" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Actions Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="@dimen/card_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <!-- Manage Emergency Contacts -->
+                    <LinearLayout
+                        android:id="@+id/btnManageContacts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="@dimen/spacing_medium"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_contacts"
+                            app:tint="@color/text_secondary"
+                            android:contentDescription="Contacts" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:text="@string/manage_emergency_contacts"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif" />
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_small"
+                            android:layout_height="@dimen/icon_small"
+                            android:src="@android:drawable/ic_menu_more"
+                            app:tint="@color/text_quaternary"
+                            android:contentDescription="More"
+                            android:rotation="270" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/divider" />
+
+                    <!-- Update Medical Info -->
+                    <LinearLayout
+                        android:id="@+id/btnUpdateMedical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="@dimen/spacing_medium"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_medical_info"
+                            app:tint="@color/text_secondary"
+                            android:contentDescription="Medical" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:text="@string/update_medical_info"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif" />
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_small"
+                            android:layout_height="@dimen/icon_small"
+                            android:src="@android:drawable/ic_menu_more"
+                            app:tint="@color/text_quaternary"
+                            android:contentDescription="More"
+                            android:rotation="270" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/divider" />
+
+                    <!-- Clear History -->
+                    <LinearLayout
+                        android:id="@+id/btnClearHistory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="@dimen/spacing_medium"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@android:drawable/ic_menu_delete"
+                            app:tint="@color/text_secondary"
+                            android:contentDescription="Clear" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:text="@string/clear_history"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif" />
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_small"
+                            android:layout_height="@dimen/icon_small"
+                            android:src="@android:drawable/ic_menu_more"
+                            app:tint="@color/text_quaternary"
+                            android:contentDescription="More"
+                            android:rotation="270" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/divider" />
+
+                    <!-- About AccidentAid -->
+                    <LinearLayout
+                        android:id="@+id/btnAbout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="@dimen/spacing_medium"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@android:drawable/ic_menu_info_details"
+                            app:tint="@color/text_secondary"
+                            android:contentDescription="About" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:text="@string/about_app"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif" />
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_small"
+                            android:layout_height="@dimen/icon_small"
+                            android:src="@android:drawable/ic_menu_more"
+                            app:tint="@color/text_quaternary"
+                            android:contentDescription="More"
+                            android:rotation="270" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Version Footer -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/app_version"
+                android:textSize="14sp"
+                android:textColor="@color/text_tertiary"
+                android:fontFamily="sans-serif"
+                android:layout_marginTop="@dimen/spacing_xlarge"
+                android:layout_marginBottom="@dimen/spacing_xlarge" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

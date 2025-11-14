@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material Design Base Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- ========== ACCIDENTAID BRAND COLORS ========== -->
+
+    <!-- Primary: Trust Blue -->
+    <color name="primary_blue">#0078D4</color>
+    <color name="primary_blue_dark">#005A9E</color>
+    <color name="primary_blue_light">#B3D9F2</color>
+    <color name="primary_blue_lighter">#E6F3FA</color>
+    <color name="blue_gradient_start">#4A9FE8</color>
+    <color name="blue_gradient_end">#0078D4</color>
+
+    <!-- Alert: Emergency Red -->
+    <color name="emergency_red">#E63946</color>
+    <color name="emergency_red_dark">#C62828</color>
+    <color name="emergency_light">#FFEBEE</color>
+    <color name="emergency_gradient_start">#F25C66</color>
+    <color name="emergency_gradient_end">#E63946</color>
+
+    <!-- Success: Confirmation Green -->
+    <color name="accent_green">#00C896</color>
+    <color name="accent_green_dark">#00A076</color>
+    <color name="accent_green_light">#B3F5E5</color>
+    <color name="green_gradient_start">#33D6AB</color>
+    <color name="green_gradient_end">#00C896</color>
+
+    <!-- Background: Soft White-Blue -->
+    <color name="background">#F5F9FC</color>
+    <color name="background_light">#FFFFFF</color>
+    <color name="background_secondary">#EBF4F9</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_elevated">#FFFFFF</color>
+
+    <!-- Professional Accent Colors -->
+    <color name="accent_orange">#FF9500</color>
+    <color name="accent_orange_light">#FFE5B3</color>
+    <color name="accent_purple">#8B5CF6</color>
+    <color name="accent_purple_light">#EDE9FE</color>
+    <color name="accent_yellow">#FFD60A</color>
+
+    <!-- Advanced Text Colors -->
+    <color name="text_primary">#1C1C1E</color>
+    <color name="text_secondary">#48484A</color>
+    <color name="text_tertiary">#8E8E93</color>
+    <color name="text_quaternary">#C7C7CC</color>
+    <color name="text_disabled">#D1D1D6</color>
+    <color name="text_white">#FFFFFF</color>
+
+    <!-- Legacy Text Colors (for compatibility) -->
+    <color name="text_dark">#1C1C1E</color>
+    <color name="text_medium">#48484A</color>
+    <color name="text_light">#8E8E93</color>
+    <color name="text_hint">#C7C7CC</color>
+
+    <!-- Subtle Shadow and Border Colors -->
+    <color name="shadow_light">#0D000000</color>
+    <color name="shadow_medium">#1A000000</color>
+    <color name="shadow_strong">#26000000</color>
+    <color name="divider">#E5E5EA</color>
+    <color name="border_light">#E5E5EA</color>
+    <color name="border_medium">#C7C7CC</color>
+
+    <!-- Status Colors -->
+    <color name="status_success">#00C896</color>
+    <color name="status_warning">#FF9500</color>
+    <color name="status_error">#E63946</color>
+    <color name="status_info">#0078D4</color>
+
+    <!-- Semi-transparent Overlays -->
+    <color name="overlay_dark">#80000000</color>
+    <color name="overlay_light">#40FFFFFF</color>
+    <color name="overlay_scrim">#B3000000</color>
+    <color name="overlay_emergency">#CCE63946</color>
+
+    <!-- Medical-Specific Colors -->
+    <color name="blood_red">#E63946</color>
+    <color name="hospital_blue">#0078D4</color>
+    <color name="medical_green">#00C896</color>
+    <color name="vital_orange">#FF9500</color>
+
+    <!-- Gradient Colors for Splash & Backgrounds -->
+    <color name="gradient_light_blue">#B3D9F2</color>
+    <color name="gradient_white">#FFFFFF</color>
+
+    <!-- Button States -->
+    <color name="button_primary">#0078D4</color>
+    <color name="button_primary_pressed">#005A9E</color>
+    <color name="button_emergency">#E63946</color>
+    <color name="button_emergency_pressed">#C62828</color>
+    <color name="button_success">#00C896</color>
+    <color name="button_success_pressed">#00A076</color>
+
+    <!-- Detection States -->
+    <color name="detection_inactive">#8E8E93</color>
+    <color name="detection_active">#00C896</color>
+    <color name="detection_alert">#E63946</color>
+</resources>

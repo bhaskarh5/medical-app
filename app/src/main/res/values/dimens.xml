@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ========== ACCIDENTAID SPACING SCALE ========== -->
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_medium">12dp</dimen>
+    <dimen name="spacing_normal">16dp</dimen>
+    <dimen name="spacing_large">20dp</dimen>
+    <dimen name="spacing_xlarge">24dp</dimen>
+    <dimen name="spacing_xxlarge">32dp</dimen>
+    <dimen name="spacing_huge">40dp</dimen>
+
+    <!-- Card Properties - Modern Medical Style (16-24dp) -->
+    <dimen name="card_radius">20dp</dimen>
+    <dimen name="card_radius_large">24dp</dimen>
+    <dimen name="card_radius_small">16dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_elevation_high">8dp</dimen>
+    <dimen name="card_elevation_highest">12dp</dimen>
+    <dimen name="card_padding">20dp</dimen>
+
+    <!-- Button Properties - Rounded Medical Style -->
+    <dimen name="button_radius">16dp</dimen>
+    <dimen name="button_radius_large">20dp</dimen>
+    <dimen name="button_radius_xlarge">24dp</dimen>
+    <dimen name="button_radius_pill">999dp</dimen>
+    <dimen name="button_padding_vertical">16dp</dimen>
+    <dimen name="button_padding_vertical_large">20dp</dimen>
+    <dimen name="button_padding_vertical_xlarge">24dp</dimen>
+    <dimen name="button_padding_horizontal">24dp</dimen>
+    <dimen name="button_padding_horizontal_large">32dp</dimen>
+
+    <!-- Text Input -->
+    <dimen name="input_radius">16dp</dimen>
+    <dimen name="input_padding_vertical">16dp</dimen>
+    <dimen name="input_stroke_width">2dp</dimen>
+
+    <!-- Icon Sizes -->
+    <dimen name="icon_tiny">16dp</dimen>
+    <dimen name="icon_small">24dp</dimen>
+    <dimen name="icon_medium">32dp</dimen>
+    <dimen name="icon_large">48dp</dimen>
+    <dimen name="icon_xlarge">64dp</dimen>
+    <dimen name="icon_xxlarge">80dp</dimen>
+    <dimen name="icon_huge">120dp</dimen>
+
+    <!-- Avatar Sizes -->
+    <dimen name="avatar_small">40dp</dimen>
+    <dimen name="avatar_medium">56dp</dimen>
+    <dimen name="avatar_large">80dp</dimen>
+    <dimen name="avatar_xlarge">120dp</dimen>
+
+    <!-- Touch Targets -->
+    <dimen name="touch_target_min">48dp</dimen>
+    <dimen name="touch_target_large">56dp</dimen>
+
+    <!-- Elevation -->
+    <dimen name="elevation_none">0dp</dimen>
+    <dimen name="elevation_low">2dp</dimen>
+    <dimen name="elevation_medium">4dp</dimen>
+    <dimen name="elevation_high">8dp</dimen>
+    <dimen name="elevation_highest">12dp</dimen>
+
+    <!-- Stroke Width -->
+    <dimen name="stroke_thin">1dp</dimen>
+    <dimen name="stroke_normal">2dp</dimen>
+    <dimen name="stroke_thick">3dp</dimen>
+    <dimen name="stroke_xthick">4dp</dimen>
+
+    <!-- Emergency Detection Button -->
+    <dimen name="detection_button_size">160dp</dimen>
+    <dimen name="detection_icon_size">64dp</dimen>
+
+    <!-- Countdown Timer -->
+    <dimen name="countdown_size">200dp</dimen>
+    <dimen name="countdown_text_size">72sp</dimen>
+
+    <!-- Bottom Navigation -->
+    <dimen name="bottom_nav_height">64dp</dimen>
+    <dimen name="bottom_nav_icon_size">28dp</dimen>
+</resources>

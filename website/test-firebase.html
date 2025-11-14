@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Connection Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f0f4f8;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1e40af;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #94a3b8;
+            background: #f8fafc;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #475569;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        .status.success {
+            background: #dcfce7;
+            color: #166534;
+            border: 2px solid #16a34a;
+        }
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 2px solid #dc2626;
+        }
+        .status.info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 2px solid #3b82f6;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+        input {
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 14px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+<div class="test-container">
+    <h1>🔥 Firebase Connection Diagnostic Tool</h1>
+
+    <div class="test-section">
+        <h3>1. Firebase Configuration</h3>
+        <div id="configStatus"></div>
+        <pre id="configDisplay"></pre>
+    </div>
+
+    <div class="test-section">
+        <h3>2. Database Connection Test</h3>
+        <button onclick="testConnection()">Test Connection</button>
+        <div id="connectionStatus"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>3. List All Patient IDs</h3>
+        <button onclick="listAllPatients()">List All Patients</button>
+        <div id="patientsStatus"></div>
+        <pre id="patientsList"></pre>
+    </div>
+
+    <div class="test-section">
+        <h3>4. Look Up Specific Patient</h3>
+        <input type="text" id="testPatientId"
+               placeholder="Enter Patient ID (e.g., EMG-XXXX-XXXX-XXXX)">
+        <button onclick="lookupPatient()">Look Up</button>
+        <div id="lookupStatus"></div>
+        <pre id="patientData"></pre>
+    </div>
+
+    <div class="test-section">
+        <h3>5. Database Rules Check</h3>
+        <button onclick="checkRules()">Check Rules</button>
+        <div id="rulesStatus"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>6. Write Test Data</h3>
+        <button onclick="writeTestData()">Write Test Patient</button>
+        <div id="writeStatus"></div>
+        <pre id="writeData"></pre>
+    </div>
+</div>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+<!-- Firebase Configuration -->
+<script src="js/firebase-config.js"></script>
+
+<script>
+
+// Display Firebase Config
+document.addEventListener('DOMContentLoaded', function() {
+    const configDisplay = document.getElementById('configDisplay');
+    const configStatus = document.getElementById('configStatus');
+    
+    configDisplay.textContent = JSON.stringify({
+        projectId: firebaseConfig.projectId,
+        databaseURL: firebaseConfig.databaseURL,
+        authDomain: firebaseConfig.authDomain,
+        apiKey: firebaseConfig.apiKey.substring(0, 20) + '...'
+    }, null, 2);
+    
+    if (firebaseConfig.databaseURL && firebaseConfig.databaseURL.includes('firebaseio.com')) {
+        configStatus.innerHTML = '<div class="status success">✅ Firebase config loaded successfully</div>';
+    } else {
+        configStatus.innerHTML = '<div class="status error">❌ Firebase config missing or invalid</div>';
+    }
+});
+
+function testConnection() {
+    const statusDiv = document.getElementById('connectionStatus');
+    statusDiv.innerHTML = '<div class="status info">⏳ Testing connection...</div>';
+    
+    // Test by reading the root
+    database.ref('.info/connected').once('value')
+        .then(snapshot => {
+            if (snapshot.val()) {
+                statusDiv.innerHTML = '<div class="status success">✅ Connected to Firebase successfully!</div>';
+            } else {
+                statusDiv.innerHTML = '<div class="status error">❌ Not connected to Firebase</div>';
+            }
+        })
+        .catch(error => {
+            statusDiv.innerHTML = `<div class="status error">❌ Connection error: ${error.message}</div>`;
+        });
+}
+
+function listAllPatients() {
+    const statusDiv = document.getElementById('patientsStatus');
+    const listDiv = document.getElementById('patientsList');
+    
+    statusDiv.innerHTML = '<div class="status info">⏳ Fetching all patients...</div>';
+    listDiv.textContent = '';
+    
+    database.ref('patients').once('value')
+        .then(snapshot => {
+            if (snapshot.exists()) {
+                const patients = snapshot.val();
+                const patientIds = Object.keys(patients);
+                
+                statusDiv.innerHTML = `<div class="status success">✅ Found ${patientIds.length} patient(s)</div>`;
+                
+                const patientInfo = patientIds.map(id => {
+                    const patient = patients[id];
+                    return {
+                        id: id,
+                        name: patient.personalInfo?.name || 'N/A',
+                        hasData: {
+                            personalInfo: !!patient.personalInfo,
+                            medicalInfo: !!patient.medicalInfo,
+                            emergencyContacts: !!patient.emergencyContacts,
+                            location: !!patient.location
+                        }
+                    };
+                });
+                
+                listDiv.textContent = JSON.stringify(patientInfo, null, 2);
+            } else {
+                statusDiv.innerHTML = '<div class="status error">❌ No patients found in database</div>';
+                listDiv.textContent = 'The "patients" node is empty or does not exist.';
+            }
+        })
+        .catch(error => {
+            statusDiv.innerHTML = `<div class="status error">❌ Error: ${error.message}</div>`;
+            listDiv.textContent = error.toString();
+        });
+}
+
+function lookupPatient() {
+    const patientId = document.getElementById('testPatientId').value.trim().toUpperCase();
+    const statusDiv = document.getElementById('lookupStatus');
+    const dataDiv = document.getElementById('patientData');
+    
+    if (!patientId) {
+        statusDiv.innerHTML = '<div class="status error">❌ Please enter a Patient ID</div>';
+        return;
+    }
+    
+    statusDiv.innerHTML = '<div class="status info">⏳ Looking up patient...</div>';
+    dataDiv.textContent = '';
+    
+    database.ref('patients/' + patientId).once('value')
+        .then(snapshot => {
+            if (snapshot.exists()) {
+                statusDiv.innerHTML = `<div class="status success">✅ Patient found: ${patientId}</div>`;
+                dataDiv.textContent = JSON.stringify(snapshot.val(), null, 2);
+            } else {
+                statusDiv.innerHTML = `<div class="status error">❌ Patient not found: ${patientId}</div>`;
+                dataDiv.textContent = 'Patient does not exist in database.';
+            }
+        })
+        .catch(error => {
+            statusDiv.innerHTML = `<div class="status error">❌ Error: ${error.message}</div>`;
+            dataDiv.textContent = error.toString();
+        });
+}
+
+function checkRules() {
+    const statusDiv = document.getElementById('rulesStatus');
+    statusDiv.innerHTML = '<div class="status info">⏳ Checking database rules...</div>';
+    
+    // Try to read from database
+    database.ref('patients').limitToFirst(1).once('value')
+        .then(snapshot => {
+            statusDiv.innerHTML += '<div class="status success">✅ Read permission: OK</div>';
+            
+            // Try to write a test
+            const testRef = database.ref('_test_' + Date.now());
+            return testRef.set({ test: true });
+        })
+        .then(() => {
+            statusDiv.innerHTML += '<div class="status success">✅ Write permission: OK</div>';
+        })
+        .catch(error => {
+            if (error.code === 'PERMISSION_DENIED') {
+                statusDiv.innerHTML += `<div class="status error">❌ Permission denied. Check Firebase database rules!</div>`;
+            } else {
+                statusDiv.innerHTML += `<div class="status error">❌ Error: ${error.message}</div>`;
+            }
+        });
+}
+
+function writeTestData() {
+    const statusDiv = document.getElementById('writeStatus');
+    const dataDiv = document.getElementById('writeData');
+    
+    const testPatientId = 'EMG-TEST-' + Date.now().toString().substring(8);
+    
+    const testData = {
+        id: testPatientId,
+        personalInfo: {
+            name: 'Test Patient',
+            age: '30',
+            bloodGroup: 'O+',
+            address: '123 Test Street'
+        },
+        medicalInfo: {
+            allergies: 'None',
+            medications: 'None',
+            chronicConditions: 'None',
+            doctorName: 'Dr. Test',
+            doctorPhone: '+1-555-0000'
+        },
+        emergencyContacts: [
+            {
+                id: '1',
+                name: 'Test Contact',
+                phone: '+1-555-1111',
+                isPrimary: true
+            }
+        ],
+        location: {
+            latitude: 40.7128,
+            longitude: -74.0060,
+            timestamp: Date.now()
+        },
+        lastUpdated: Date.now(),
+        emergencyActive: false
+    };
+    
+    statusDiv.innerHTML = '<div class="status info">⏳ Writing test data...</div>';
+    dataDiv.textContent = JSON.stringify(testData, null, 2);
+    
+    database.ref('patients/' + testPatientId).set(testData)
+        .then(() => {
+            statusDiv.innerHTML = `<div class="status success">✅ Test patient created successfully!<br>Patient ID: ${testPatientId}<br>Try looking this up on the main page!</div>`;
+        })
+        .catch(error => {
+            statusDiv.innerHTML = `<div class="status error">❌ Failed to write: ${error.message}</div>`;
+        });
+}
+</script>
+</body>
+</html>

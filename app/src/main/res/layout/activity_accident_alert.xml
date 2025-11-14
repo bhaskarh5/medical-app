@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_emergency"
+    android:padding="@dimen/spacing_xlarge">
+
+    <!-- Top Alert Label -->
+    <TextView
+        android:id="@+id/tvAlertLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/spacing_huge"
+        android:text="@string/accident_detected"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center" />
+
+    <!-- Center Countdown Timer -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardCountdown"
+        android:layout_width="@dimen/countdown_size"
+        android:layout_height="@dimen/countdown_size"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="999dp"
+        app:cardElevation="@dimen/card_elevation_highest"
+        app:cardBackgroundColor="@color/white"
+        app:strokeWidth="8dp"
+        app:strokeColor="@color/emergency_red_dark">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Countdown Number -->
+            <TextView
+                android:id="@+id/tvCountdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="10"
+                android:textSize="@dimen/countdown_text_size"
+                android:textStyle="bold"
+                android:textColor="@color/emergency_red"
+                android:fontFamily="sans-serif-medium" />
+
+            <!-- Rotating Ring Animation Placeholder -->
+            <ProgressBar
+                android:id="@+id/progressRing"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:indeterminate="false"
+                android:max="10"
+                android:progress="10"
+                android:progressDrawable="@drawable/circular_progress"
+                android:layout_margin="@dimen/spacing_normal" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Bottom Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/spacing_huge"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Instruction Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel_if_okay"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/spacing_xlarge" />
+
+        <!-- Big Cancel Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelAlert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel_alert"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/emergency_red"
+            android:backgroundTint="@color/white"
+            app:cornerRadius="@dimen/button_radius_xlarge"
+            android:paddingVertical="@dimen/button_padding_vertical_xlarge"
+            app:strokeWidth="@dimen/stroke_thick"
+            app:strokeColor="@color/emergency_red"
+            android:fontFamily="sans-serif-medium"
+            app:elevation="@dimen/elevation_high" />
+    </LinearLayout>
+
+</RelativeLayout>

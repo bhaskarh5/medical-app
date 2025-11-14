@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AccidentAid</string>
+    <string name="app_tagline">Your Emergency Guardian</string>
+
+    <!-- Main Screen -->
+    <string name="emergency_call">🚨 CALL EMERGENCY</string>
+    <string name="share_details">Share Medical Details</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="manage_contacts">Manage Emergency Contacts</string>
+    <string name="medical_info_title">Medical Information</string>
+    <string name="tap_to_view">Tap to view/edit details</string>
+
+    <!-- Home Dashboard -->
+    <string name="welcome_user">Welcome, %s</string>
+    <string name="welcome_default">Welcome</string>
+    <string name="medical_profile_card">Medical Profile</string>
+    <string name="medical_profile_desc">View or Edit your health info</string>
+    <string name="patient_id_placeholder">Patient ID: —</string>
+    <string name="location_status_card">Location Status</string>
+    <string name="location_gps_active">GPS: Active</string>
+    <string name="location_gps_inactive">GPS: Inactive</string>
+    <string name="location_permission_required">Location sharing disabled</string>
+    <string name="settings_auto_location_enabled">Location sharing enabled</string>
+    <string name="settings_auto_location_disabled">Location sharing disabled</string>
+    <string name="emergency_contacts_card">Emergency Contacts</string>
+    <string name="contacts_count">%d saved contact(s)</string>
+    <string name="activate_detection">Activate Accident Detection</string>
+    <string name="detection_active">Detection Active</string>
+    <string name="detection_inactive">Tap to Activate</string>
+    <string name="quick_actions">Quick Actions</string>
+    <string name="action_find_hospitals">Find Nearby Hospitals</string>
+    <string name="action_test_accident">Run Accident Test</string>
+
+    <!-- Personal Info -->
+    <string name="personal_info_title">Personal Information</string>
+    <string name="name_hint">Full Name</string>
+    <string name="age_hint">Age</string>
+    <string name="blood_group_hint">Blood Group (e.g., O+)</string>
+    <string name="age_display_format">Age: %1$s</string>
+    <string name="blood_group_display_format">Blood Group: %1$s</string>
+    <string name="address_hint">Home Address</string>
+    <string name="select_photo">Select Photo</string>
+
+    <!-- Medical Info -->
+    <string name="medical_details_title">Medical Details</string>
+    <string name="allergies_hint">Allergies (e.g., Penicillin, Peanuts)</string>
+    <string name="medications_hint">Current Medications</string>
+    <string name="conditions_hint">Chronic Conditions (e.g., Diabetes, Asthma)</string>
+    <string name="doctor_name_hint">Doctor\'s Name</string>
+    <string name="doctor_phone_hint">Doctor\'s Phone Number</string>
+
+    <!-- Contacts -->
+    <string name="emergency_contacts_title">Emergency Contacts</string>
+    <string name="add_contact">Add New Contact</string>
+    <string name="contact_name_hint">Contact Name</string>
+    <string name="contact_phone_hint">Phone Number</string>
+    <string name="primary_contact">Primary Contact</string>
+    <string name="primary_badge">PRIMARY</string>
+
+    <!-- Buttons -->
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="ok">OK</string>
+    <string name="cancel_alert">I\'m Okay - Cancel</string>
+    <string name="false_alarm">Cancel (False Alarm)</string>
+
+    <!-- Messages -->
+    <string name="no_contacts_msg">No emergency contacts added yet.\nTap the button below to add one.</string>
+
+    <!-- Accident Detection Alert -->
+    <string name="accident_detected">Possible accident detected!</string>
+    <string name="cancel_if_okay">Cancel alert if you\'re okay</string>
+    <string name="countdown_seconds">%d</string>
+
+    <!-- Calling Hospital -->
+    <string name="contacting_hospital">Contacting nearest hospital…</string>
+    <string name="emergency_id_format">Your Emergency ID: #%s</string>
+    <string name="sharing_details">Sharing your medical details securely.</string>
+
+    <!-- History -->
+    <string name="incident_history">Incident History</string>
+    <string name="search_history">Search</string>
+    <string name="filter_history">Filter</string>
+    <string name="history_filter_placeholder">Filtering options will be available soon.</string>
+    <string name="history_search_placeholder">Search will be available soon.</string>
+    <string name="status_responded">Responded</string>
+    <string name="status_cancelled">Cancelled</string>
+    <string name="no_incidents">No incidents yet — Stay Safe!</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="accident_detection_toggle">Accident Detection</string>
+    <string name="settings_accident_detection_enabled">Accident detection enabled</string>
+    <string name="settings_accident_detection_disabled">Accident detection disabled</string>
+    <string name="voice_alert_toggle">Voice Alert</string>
+    <string name="settings_voice_alerts_enabled">Voice alerts enabled</string>
+    <string name="settings_voice_alerts_disabled">Voice alerts disabled</string>
+    <string name="auto_location_toggle">Share Location Automatically</string>
+    <string name="manage_emergency_contacts">Manage Emergency Contacts</string>
+    <string name="update_medical_info">Update Medical Info</string>
+    <string name="clear_history">Clear History</string>
+    <string name="settings_clear_history_confirmation">Incident history cleared</string>
+    <string name="settings_clear_history_message">This will remove all stored incident records from this device.</string>
+    <string name="about_app">About AccidentAid</string>
+    <string name="settings_about_title">About AccidentAid</string>
+    <string name="settings_about_message">AccidentAid helps first responders access your critical medical information instantly. Keep your profile, contacts, and preferences up to date for the best experience.</string>
+    <string name="app_version">Version 1.0 2025 AccidentAid Team</string>
+    <string name="settings_unavailable">Settings coming soon!</string>
+
+    <!-- Alerts -->
+    <string name="alerts_cancelled_message">Emergency alert cancelled.</string>
+    <string name="alerts_timeout_message">Emergency alert sent to your contacts.</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_history">History</string>
+    <string name="nav_alerts">Alerts</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Splash Screen -->
+    <string name="loading">Loading…</string>
+</resources>

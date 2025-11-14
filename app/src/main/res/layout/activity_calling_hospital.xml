@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_blue"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_xlarge"
+        android:gravity="center_horizontal">
+
+        <!-- Animated Phone/Ambulance Icon -->
+        <ImageView
+            android:id="@+id/ivCallingIcon"
+            android:layout_width="@dimen/icon_huge"
+            android:layout_height="@dimen/icon_huge"
+            android:src="@android:drawable/ic_menu_call"
+            app:tint="@color/white"
+            android:contentDescription="Calling"
+            android:layout_marginTop="@dimen/spacing_huge" />
+
+        <!-- Contacting Hospital Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contacting_hospital"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/spacing_xlarge" />
+
+        <!-- Emergency ID -->
+        <TextView
+            android:id="@+id/tvEmergencyId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Emergency ID: #AXD1234"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:padding="@dimen/spacing_medium"
+            android:background="@drawable/rounded_white_bg"
+            android:backgroundTint="@color/overlay_light" />
+
+        <!-- Map Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="@dimen/spacing_xlarge"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="@dimen/card_elevation_high">
+
+            <!-- Placeholder for Map View -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_secondary">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_xlarge"
+                    android:layout_height="@dimen/icon_xlarge"
+                    android:src="@android:drawable/ic_menu_mylocation"
+                    app:tint="@color/primary_blue"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="Location" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Live GPS Location"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/spacing_normal" />
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Status Message -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sharing_details"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:alpha="0.9" />
+
+        <!-- Spacer -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:minHeight="@dimen/spacing_xlarge" />
+
+        <!-- Cancel Button (Small at Bottom) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelCall"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/false_alarm"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_marginBottom="@dimen/spacing_large" />
+
+    </LinearLayout>
+</ScrollView>

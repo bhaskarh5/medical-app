@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Firebase Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f0f4f8;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1e40af;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+        }
+        .success {
+            background: #dcfce7;
+            border-color: #16a34a;
+            color: #166534;
+        }
+        .error {
+            background: #fee2e2;
+            border-color: #dc2626;
+            color: #991b1b;
+        }
+        .info {
+            background: #dbeafe;
+            border-color: #3b82f6;
+            color: #1e40af;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 10px 5px;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        pre {
+            background: #1e293b;
+            color: #10b981;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
+        .step {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1e40af;
+            margin-top: 20px;
+        }
+        input {
+            padding: 12px;
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 16px;
+            width: 350px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🔥 Final Firebase Connection Test</h1>
+    <p style="font-size: 18px;">This is a fresh test to verify your Firebase connection and find
+        your Patient ID.</p>
+
+    <div id="initStatus" class="section info">
+        <strong>Status:</strong> Loading Firebase...
+    </div>
+
+    <div class="step">📋 Step 1: List All Your Patients</div>
+    <div class="section">
+        <button onclick="listPatients()" style="font-size: 20px;">🔍 CLICK HERE TO FIND YOUR PATIENT
+            ID
+        </button>
+        <div id="listStatus" style="margin-top: 15px;"></div>
+        <pre id="listData"></pre>
+    </div>
+
+    <div class="step">🔎 Step 2: Search for Patient by ID</div>
+    <div class="section">
+        <p><strong>Copy your Patient ID from above, then paste it here:</strong></p>
+        <input type="text" id="searchId" placeholder="EMG-XXXX-XXXX-XXXX"
+               style="text-transform: uppercase;">
+        <br><br>
+        <button onclick="searchPatient()" style="font-size: 20px;">🚀 SEARCH FOR PATIENT</button>
+        <div id="searchStatus" style="margin-top: 15px;"></div>
+        <pre id="searchData"></pre>
+    </div>
+
+    <div class="step">📊 Debug Information</div>
+    <div class="section">
+        <pre id="debugLog">Initializing...</pre>
+    </div>
+</div>
+
+<!-- Firebase SDKs - Using CDN -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+<script>
+
+// Debug logger
+function log(message) {
+    const debugLog = document.getElementById('debugLog');
+    const timestamp = new Date().toLocaleTimeString();
+    debugLog.textContent += `\n[${timestamp}] ${message}`;
+    console.log(message);
+}
+
+// Firebase Configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyC-NYOlKhFKQGsQR310oYIqjrVkiiNCaDw",
+    authDomain: "emergencymedical-a43a9.firebaseapp.com",
+    databaseURL: "https://emergencymedical-a43a9-default-rtdb.firebaseio.com",
+    projectId: "emergencymedical-a43a9",
+    storageBucket: "emergencymedical-a43a9.firebasestorage.app",
+    messagingSenderId: "493706183621",
+    appId: "1:493706183621:web:d1d0aeac356e53004cc1ac"
+};
+
+let database;
+let firebaseInitialized = false;
+
+// Initialize Firebase
+window.addEventListener('DOMContentLoaded', function() {
+    const statusDiv = document.getElementById('initStatus');
+    
+    try {
+        log('Checking if firebase is available...');
+        
+        if (typeof firebase === 'undefined') {
+            statusDiv.className = 'section error';
+            statusDiv.innerHTML = '<strong>❌ ERROR:</strong> Firebase SDK failed to load.<br><br>' +
+                                  '<strong>Possible causes:</strong><br>' +
+                                  '• No internet connection<br>' +
+                                  '• Firewall/Antivirus blocking Firebase<br>' +
+                                  '• Browser security settings<br><br>' +
+                                  '<strong>Try:</strong><br>' +
+                                  '• Check your internet connection<br>' +
+                                  '• Open this page in Incognito mode (Ctrl+Shift+N)<br>' +
+                                  '• Try a different browser';
+            log('ERROR: Firebase SDK not loaded');
+            return;
+        }
+        
+        log('Firebase SDK loaded successfully');
+        log('Initializing Firebase app...');
+        
+        firebase.initializeApp(firebaseConfig);
+        database = firebase.database();
+        firebaseInitialized = true;
+        
+        statusDiv.className = 'section success';
+        statusDiv.innerHTML = '<strong>✅ SUCCESS!</strong> Firebase is connected and ready!<br>' +
+                              '<small>Project: emergencymedical-a43a9</small><br>' +
+                              '<strong style="font-size: 18px; margin-top: 10px; display: block;">👇 Now click the button below to find your Patient ID!</strong>';
+        
+        log('Firebase initialized successfully');
+        log('Ready to fetch data');
+        
+    } catch (error) {
+        statusDiv.className = 'section error';
+        statusDiv.innerHTML = '<strong>❌ ERROR:</strong> ' + error.message;
+        log('ERROR: ' + error.message);
+    }
+});
+
+function listPatients() {
+    const statusDiv = document.getElementById('listStatus');
+    const dataDiv = document.getElementById('listData');
+    
+    if (!firebaseInitialized) {
+        statusDiv.innerHTML = '<div class="section error">❌ Firebase not initialized. Refresh the page and try again.</div>';
+        log('ERROR: Trying to list patients but Firebase not initialized');
+        return;
+    }
+    
+    statusDiv.innerHTML = '<div class="section info">⏳ Searching for patients in Firebase...</div>';
+    dataDiv.textContent = '';
+    log('Fetching all patients from /patients...');
+    
+    database.ref('patients').once('value')
+        .then(function(snapshot) {
+            if (snapshot.exists()) {
+                const patients = snapshot.val();
+                const patientIds = Object.keys(patients);
+                
+                log('SUCCESS: Found ' + patientIds.length + ' patient(s)');
+                
+                statusDiv.innerHTML = '<div class="section success">' +
+                                      '<strong>✅ FOUND ' + patientIds.length + ' PATIENT(S)!</strong><br><br>' +
+                                      '<strong style="font-size: 18px;">📋 Your Patient ID(s):</strong></div>';
+                
+                let output = '';
+                patientIds.forEach(function(id) {
+                    const patient = patients[id];
+                    output += '\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+                    output += '🆔 PATIENT ID: ' + id + '\n';
+                    output += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+                    output += '👤 Name: ' + (patient.personalInfo?.name || 'N/A') + '\n';
+                    output += '🎂 Age: ' + (patient.personalInfo?.age || 'N/A') + '\n';
+                    output += '🩸 Blood Group: ' + (patient.personalInfo?.bloodGroup || 'N/A') + '\n';
+                    output += '📍 Address: ' + (patient.personalInfo?.address || 'N/A') + '\n';
+                    output += '\n💊 MEDICAL INFO:\n';
+                    output += '• Allergies: ' + (patient.medicalInfo?.allergies || 'N/A') + '\n';
+                    output += '• Medications: ' + (patient.medicalInfo?.medications || 'N/A') + '\n';
+                    output += '• Conditions: ' + (patient.medicalInfo?.chronicConditions || 'N/A') + '\n';
+                    output += '• Doctor: ' + (patient.medicalInfo?.doctorName || 'N/A') + '\n';
+                    output += '• Doctor Phone: ' + (patient.medicalInfo?.doctorPhone || 'N/A') + '\n';
+                    output += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+                });
+                
+                dataDiv.textContent = output;
+                
+                // Auto-fill the first Patient ID in the search box
+                if (patientIds.length > 0) {
+                    document.getElementById('searchId').value = patientIds[0];
+                }
+                
+            } else {
+                log('No patients found in database');
+                statusDiv.innerHTML = '<div class="section info">' +
+                                      '<strong>ℹ️ NO PATIENTS FOUND</strong><br><br>' +
+                                      'Your Firebase database is empty.<br><br>' +
+                                      '<strong>To fix this:</strong><br>' +
+                                      '1. Open the Android app on your phone<br>' +
+                                      '2. Click "Edit Profile"<br>' +
+                                      '3. Fill in all the fields<br>' +
+                                      '4. Click "SAVE"<br>' +
+                                      '5. Wait 15 seconds<br>' +
+                                      '6. Come back here and click this button again</div>';
+                dataDiv.textContent = 'Database path: /patients\nStatus: Empty';
+            }
+        })
+        .catch(function(error) {
+            log('ERROR fetching patients: ' + error.code + ' - ' + error.message);
+            statusDiv.innerHTML = '<div class="section error">' +
+                                  '<strong>❌ ERROR:</strong> ' + error.code + '<br>' +
+                                  error.message + '<br><br>' +
+                                  '<strong>If you see "PERMISSION_DENIED":</strong><br>' +
+                                  '1. Go to Firebase Console<br>' +
+                                  '2. Realtime Database → Rules<br>' +
+                                  '3. Set ".read": true and ".write": true<br>' +
+                                  '4. Click Publish</div>';
+            dataDiv.textContent = 'Error details:\n' + error.toString();
+        });
+}
+
+function searchPatient() {
+    const patientId = document.getElementById('searchId').value.trim().toUpperCase();
+    const statusDiv = document.getElementById('searchStatus');
+    const dataDiv = document.getElementById('searchData');
+    
+    if (!patientId) {
+        statusDiv.innerHTML = '<div class="section error">❌ Please enter a Patient ID</div>';
+        return;
+    }
+    
+    if (!firebaseInitialized) {
+        statusDiv.innerHTML = '<div class="section error">❌ Firebase not initialized. Refresh the page.</div>';
+        return;
+    }
+    
+    statusDiv.innerHTML = '<div class="section info">⏳ Searching for: ' + patientId + '</div>';
+    dataDiv.textContent = '';
+    log('Searching for patient: ' + patientId);
+    
+    database.ref('patients/' + patientId).once('value')
+        .then(function(snapshot) {
+            if (snapshot.exists()) {
+                log('SUCCESS: Patient found - ' + patientId);
+                const patient = snapshot.val();
+                
+                statusDiv.innerHTML = '<div class="section success">' +
+                                      '<strong>✅ PATIENT FOUND!</strong><br><br>' +
+                                      '<strong style="font-size: 20px;">🎉 SUCCESS! Your website is working!</strong><br><br>' +
+                                      'You can now use this Patient ID on your main website (index.html)</div>';
+                
+                dataDiv.textContent = JSON.stringify(patient, null, 2);
+                
+            } else {
+                log('ERROR: Patient not found - ' + patientId);
+                statusDiv.innerHTML = '<div class="section error">' +
+                                      '<strong>❌ PATIENT NOT FOUND</strong><br><br>' +
+                                      'Patient ID: ' + patientId + '<br><br>' +
+                                      'This ID does not exist in Firebase.<br>' +
+                                      'Click "FIND YOUR PATIENT ID" above to see available IDs.</div>';
+                dataDiv.textContent = 'Patient ID "' + patientId + '" does not exist in the database.';
+            }
+        })
+        .catch(function(error) {
+            log('ERROR searching patient: ' + error.code + ' - ' + error.message);
+            statusDiv.innerHTML = '<div class="section error">❌ Error: ' + error.message + '</div>';
+            dataDiv.textContent = 'Error: ' + error.toString();
+        });
+}
+
+// Auto-convert input to uppercase
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchId');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            this.value = this.value.toUpperCase();
+        });
+    }
+});
+</script>
+</body>
+</html>

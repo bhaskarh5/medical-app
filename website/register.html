@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Registration - Emergency Medical Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <header class="header-small">
+        <div class="logo">
+            <i class="fas fa-hospital-symbol"></i>
+            <h1>Emergency Medical Portal</h1>
+        </div>
+        <a href="index.html" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Back
+        </a>
+    </header>
+
+    <!-- Registration Form -->
+    <main class="register-page">
+        <section class="card register-card">
+            <div class="card-header">
+                <i class="fas fa-hospital-user"></i>
+                <h2>Register Your Hospital</h2>
+            </div>
+            <div class="card-body">
+                <p class="info-text">Join the emergency medical network to access patient
+                    information during critical situations.</p>
+
+                <form id="hospitalRegisterForm">
+                    <!-- Hospital Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-hospital"></i> Hospital Information</h3>
+
+                        <div class="input-group">
+                            <label for="hospitalName">Hospital Name *</label>
+                            <input
+                                    type="text"
+                                    id="hospitalName"
+                                    placeholder="e.g., City General Hospital"
+                                    required
+                            >
+                        </div>
+
+                        <div class="input-group">
+                            <label for="hospitalAddress">Address *</label>
+                            <textarea
+                                    id="hospitalAddress"
+                                    rows="3"
+                                    placeholder="Full hospital address"
+                                    required
+                            ></textarea>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="state">State *</label>
+                                <input type="text" id="state" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="zipCode">ZIP Code *</label>
+                                <input type="text" id="zipCode" required>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="hospitalPhone">Hospital Phone *</label>
+                            <input
+                                    type="tel"
+                                    id="hospitalPhone"
+                                    placeholder="+1-XXX-XXX-XXXX"
+                                    required
+                            >
+                        </div>
+
+                        <div class="input-group">
+                            <label for="hospitalEmail">Official Email *</label>
+                            <input
+                                    type="email"
+                                    id="hospitalEmail"
+                                    placeholder="contact@hospital.com"
+                                    required
+                            >
+                        </div>
+
+                        <div class="input-group">
+                            <label for="hospitalWebsite">Website (Optional)</label>
+                            <input
+                                    type="url"
+                                    id="hospitalWebsite"
+                                    placeholder="https://www.hospital.com"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Administrator Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user-shield"></i> Administrator Information</h3>
+
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="adminFirstName">First Name *</label>
+                                <input type="text" id="adminFirstName" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="adminLastName">Last Name *</label>
+                                <input type="text" id="adminLastName" required>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="adminPosition">Position/Title *</label>
+                            <input
+                                    type="text"
+                                    id="adminPosition"
+                                    placeholder="e.g., Emergency Department Director"
+                                    required
+                            >
+                        </div>
+
+                        <div class="input-group">
+                            <label for="adminEmail">Email Address *</label>
+                            <input
+                                    type="email"
+                                    id="adminEmail"
+                                    placeholder="admin@hospital.com"
+                                    required
+                            >
+                        </div>
+
+                        <div class="input-group">
+                            <label for="adminPhone">Phone Number *</label>
+                            <input
+                                    type="tel"
+                                    id="adminPhone"
+                                    placeholder="+1-XXX-XXX-XXXX"
+                                    required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Account Security -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-lock"></i> Account Security</h3>
+
+                        <div class="input-group">
+                            <label for="registerPassword">Password *</label>
+                            <input
+                                    type="password"
+                                    id="registerPassword"
+                                    placeholder="Minimum 8 characters"
+                                    minlength="8"
+                                    required
+                            >
+                            <small>Must contain uppercase, lowercase, number, and special
+                                character</small>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="confirmPassword">Confirm Password *</label>
+                            <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    placeholder="Re-enter password"
+                                    minlength="8"
+                                    required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Terms & Conditions -->
+                    <div class="form-section">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeTerms" required>
+                            <span>I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a
+                                    href="privacy.html" target="_blank">Privacy Policy</a></span>
+                        </label>
+
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeHipaa" required>
+                            <span>I confirm that our hospital complies with HIPAA regulations and will use patient data responsibly</span>
+                        </label>
+                    </div>
+
+                    <div id="registerError" class="error-message" style="display: none;"></div>
+                    <div id="registerSuccess" class="success-message" style="display: none;"></div>
+
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <i class="fas fa-check-circle"></i> Submit Registration
+                    </button>
+                </form>
+
+                <div class="form-footer">
+                    <p>Already registered? <a href="index.html">Login here</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Emergency Medical Portal. All rights reserved.</p>
+        </div>
+    </footer>
+</div>
+
+<script src="js/register.js"></script>
+</body>
+</html>

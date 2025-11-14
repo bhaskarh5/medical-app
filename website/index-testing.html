@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Medical Portal - Patient Lookup (Testing)</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-hospital-symbol"></i>
+            <h1>Emergency Medical Portal</h1>
+        </div>
+        <p class="tagline">Instant Access to Patient Medical Information</p>
+        <p style="background: #fef3c7; color: #92400e; padding: 8px; border-radius: 8px; margin-top: 12px; font-size: 0.9rem;">
+            🧪 <strong>TESTING MODE</strong> - No Firebase setup needed
+        </p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Patient Lookup -->
+        <section class="card quick-lookup">
+            <div class="card-header emergency">
+                <i class="fas fa-search"></i>
+                <h2>Patient ID Lookup</h2>
+            </div>
+            <div class="card-body">
+                <p class="info-text">Enter the patient's unique ID to access their medical
+                    information instantly</p>
+                <form id="patientLookupForm">
+                    <div class="input-group">
+                        <i class="fas fa-id-card"></i>
+                        <input
+                                type="text"
+                                id="patientId"
+                                placeholder="Enter Patient ID (e.g., EMG-A3F9-2B4D-8C1E)"
+                                required
+                                pattern="EMG-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}"
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-emergency">
+                        <i class="fas fa-search"></i> Access Patient Information
+                    </button>
+                </form>
+                <div id="lookupError" class="error-message" style="display: none;"></div>
+            </div>
+        </section>
+
+        <!-- Information Box -->
+        <section class="card info-box">
+            <div class="card-header">
+                <i class="fas fa-info-circle"></i>
+                <h2>How to Test</h2>
+            </div>
+            <div class="card-body">
+                <div class="info-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Run Android App</h4>
+                            <p>Get your Patient ID from the blue card in the app</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Add ID to Code</h4>
+                            <p>Open <code>website/js/app-testing.js</code> and replace
+                                YOUR-PATIENT-ID with your actual ID</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Test Lookup</h4>
+                            <p>Enter your Patient ID above and see your medical information!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h3>What Information You'll See</h3>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-user"></i>
+                <h4>Personal Details</h4>
+                <p>Name, age, blood group, and address</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-allergies"></i>
+                <h4>Critical Allergies</h4>
+                <p>Life-saving allergy information</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-pills"></i>
+                <h4>Medications</h4>
+                <p>Current medications and conditions</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <h4>GPS Location</h4>
+                <p>Real-time patient location on map</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-user-md"></i>
+                <h4>Doctor Information</h4>
+                <p>Patient's doctor name and contact</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-phone"></i>
+                <h4>Emergency Contacts</h4>
+                <p>Family contacts with one-click call</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Emergency Medical Portal. All rights reserved.</p>
+            <p style="margin-top: 10px; opacity: 0.8; font-size: 0.9rem;">
+                For emergency use only. Patient data is confidential.
+            </p>
+        </div>
+    </footer>
+</div>
+
+<!-- Testing JavaScript (No Firebase) -->
+<script src="js/app-testing.js"></script>
+</body>
+</html>

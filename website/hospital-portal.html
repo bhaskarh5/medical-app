@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AccidentAid Hospital Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+          rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0078D4;
+            --primary-blue-dark: #005A9E;
+            --emergency-red: #E63946;
+            --success-green: #00C896;
+            --background: #F5F9FC;
+            --card-shadow: rgba(0, 0, 0, 0.08);
+            --text-primary: #1C1C1E;
+            --text-secondary: #48484A;
+            --text-tertiary: #8E8E93;
+            --border: #E5E5EA;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, rgba(0, 120, 212, 0.08), rgba(0, 200, 150, 0.08)), var(--background);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            color: var(--text-primary);
+        }
+
+        .portal-container {
+            width: min(960px, 100%);
+            background: #FFFFFF;
+            border-radius: 24px;
+            box-shadow: 0 24px 64px var(--card-shadow);
+            padding: 48px;
+            display: grid;
+            gap: 32px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .branding {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .branding-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #4A9FE8, var(--primary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .branding h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .branding span {
+            display: block;
+            font-size: 14px;
+            color: var(--text-tertiary);
+            margin-top: 4px;
+        }
+
+        .search-card {
+            background: #F8FBFF;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .search-card label {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .search-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 16px;
+        }
+
+        .search-row input {
+            padding: 16px 20px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            font-size: 18px;
+            transition: border 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .search-row input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px rgba(0, 120, 212, 0.18);
+        }
+
+        .search-row button {
+            padding: 16px 28px;
+            border-radius: 16px;
+            border: none;
+            background: linear-gradient(135deg, #4A9FE8, var(--primary-blue));
+            color: #FFFFFF;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .search-row button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 120, 212, 0.24);
+        }
+
+        .results {
+            display: grid;
+            gap: 24px;
+        }
+
+        .results h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .info-card {
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 20px;
+            background: #FFFFFF;
+        }
+
+        .info-card h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-tertiary);
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .location-card {
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(0, 120, 212, 0.08), rgba(0, 200, 150, 0.08));
+            display: grid;
+            gap: 12px;
+        }
+
+        .location-card .map-placeholder {
+            height: 180px;
+            border-radius: 16px;
+            background: repeating-linear-gradient(135deg, #E5F2FC, #E5F2FC 16px, #F6FBFF 16px, #F6FBFF 32px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+        }
+
+        .status-line {
+            font-size: 15px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-line span {
+            display: inline-flex;
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: var(--success-green);
+        }
+
+        .alert-banner {
+            border-radius: 16px;
+            background: rgba(230, 57, 70, 0.08);
+            border: 1px solid rgba(230, 57, 70, 0.18);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--emergency-red);
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 16px;
+            }
+            .portal-container {
+                padding: 32px;
+                border-radius: 20px;
+            }
+            .search-row {
+                grid-template-columns: 1fr;
+            }
+            .search-row button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="portal-container">
+    <header class="header">
+        <div class="branding">
+            <div class="branding-icon">AA</div>
+            <div>
+                <h1>AccidentAid Hospital Portal</h1>
+                <span>Secure access to emergency medical profiles</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-card">
+        <label for="patientId">Enter Patient ID</label>
+        <div class="search-row">
+            <input id="patientId" type="text" placeholder="e.g. AXD-1234-56"/>
+            <button type="button">Search</button>
+        </div>
+        <p class="status-line"><span></span>Secure connection active</p>
+    </div>
+
+    <div class="alert-banner" role="status">
+        Alert: Only authorized medical staff should access AccidentAid data.
+    </div>
+
+    <section class="results" aria-live="polite">
+        <h2>Patient Overview</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Patient</h3>
+                <p id="patientName">Jane Doe</p>
+            </div>
+            <div class="info-card">
+                <h3>Age</h3>
+                <p id="patientAge">32 years</p>
+            </div>
+            <div class="info-card">
+                <h3>Blood Group</h3>
+                <p id="patientBlood">O+</p>
+            </div>
+            <div class="info-card">
+                <h3>Emergency Contact</h3>
+                <p id="primaryContact">John Doe – (555) 123-4567</p>
+            </div>
+        </div>
+
+        <h2>Medical Details</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Allergies</h3>
+                <p id="allergies">Penicillin</p>
+            </div>
+            <div class="info-card">
+                <h3>Medications</h3>
+                <p id="medications">Metformin 500mg</p>
+            </div>
+            <div class="info-card">
+                <h3>Chronic Conditions</h3>
+                <p id="conditions">Type 2 Diabetes</p>
+            </div>
+            <div class="info-card">
+                <h3>Doctor</h3>
+                <p id="doctor">Dr. Smith – (555) 987-6543</p>
+            </div>
+        </div>
+
+        <div class="location-card">
+            <h2>Last Known Location</h2>
+            <div class="map-placeholder">MAP PREVIEW</div>
+            <p class="status-line"><span></span>GPS coordinates shared securely</p>
+        </div>
+    </section>
+</div>
+
+<script>
+
+    // Placeholder for integration logic
+    // In production, this would hook into Firebase or another backend
+    document.querySelector('button').addEventListener('click', () => {
+        alert('Fetching AccidentAid patient profile...');
+
+});
+</script>
+</body>
+</html>
