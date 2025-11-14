@@ -398,53 +398,42 @@
                             </LinearLayout>
 
                             <!-- Action Buttons -->
+                            <!-- Invisible/Hidden button elements needed by MainActivity.java -->
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btnEmergencyCall"
-                                style="@style/Widget.App.Button.Emergency"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_xlarge"
-                                android:text="@string/action_emergency_call" />
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:visibility="gone" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btnTestAccident"
-                                style="@style/Widget.App.Button.Primary"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_normal"
-                                android:text="@string/action_test_accident" />
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:visibility="gone" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btnShareDetails"
-                                style="@style/Widget.App.Button.Primary"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_normal"
-                                android:text="@string/action_share_details" />
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:visibility="gone" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btnEditProfile"
-                                style="@style/Widget.App.Button.Primary"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_normal"
-                                android:text="@string/action_edit_profile" />
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:visibility="gone" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btnManageContacts"
-                                style="@style/Widget.App.Button.Primary"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_normal"
-                                android:text="@string/action_manage_contacts" />
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:visibility="gone" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btnFindHospitals"
-                                style="@style/Widget.App.Button.Primary"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_normal"
-                                android:text="@string/action_find_hospitals" />
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:visibility="gone" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
