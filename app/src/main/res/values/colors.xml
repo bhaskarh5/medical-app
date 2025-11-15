@@ -4,6 +4,39 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!-- ========== LIFEGUARD ASSIST PREMIUM COLORS ========== -->
+
+    <!-- Futuristic Neon Palette -->
+    <color name="neon_teal">#14D2C5</color>
+    <color name="neon_teal_dark">#0FA89E</color>
+    <color name="neon_teal_light">#5FFFE8</color>
+    <color name="neon_teal_glow">#4014D2C5</color>
+
+    <color name="ice_blue">#AEE7F5</color>
+    <color name="ice_blue_dark">#7BC4D9</color>
+    <color name="ice_blue_light">#D7F4FA</color>
+    <color name="ice_blue_glow">#40AEE7F5</color>
+
+    <color name="graphite_black">#0C0F14</color>
+    <color name="graphite_dark">#060809</color>
+    <color name="graphite_medium">#1A1E26</color>
+    <color name="graphite_light">#2A2F3A</color>
+
+    <!-- Premium Glassmorphism -->
+    <color name="glass_white">#B3FFFFFF</color>
+    <color name="glass_white_border">#40FFFFFF</color>
+    <color name="glass_dark">#B30C0F14</color>
+    <color name="glass_dark_border">#400C0F14</color>
+    <color name="glass_teal">#8014D2C5</color>
+
+    <!-- Premium Gradients -->
+    <color name="gradient_teal_start">#14D2C5</color>
+    <color name="gradient_teal_end">#0FA89E</color>
+    <color name="gradient_ice_start">#AEE7F5</color>
+    <color name="gradient_ice_end">#7BC4D9</color>
+    <color name="gradient_dark_start">#1A1E26</color>
+    <color name="gradient_dark_end">#0C0F14</color>
+
     <!-- ========== ACCIDENTAID BRAND COLORS ========== -->
 
     <!-- Primary: Trust Blue -->
@@ -37,6 +70,10 @@
     <color name="card_background">#FFFFFF</color>
     <color name="card_elevated">#FFFFFF</color>
 
+    <!-- Premium Dark Background -->
+    <color name="background_dark">#0C0F14</color>
+    <color name="background_dark_elevated">#1A1E26</color>
+
     <!-- Professional Accent Colors -->
     <color name="accent_orange">#FF9500</color>
     <color name="accent_orange_light">#FFE5B3</color>
@@ -62,6 +99,8 @@
     <color name="shadow_light">#0D000000</color>
     <color name="shadow_medium">#1A000000</color>
     <color name="shadow_strong">#26000000</color>
+    <color name="shadow_teal_glow">#4014D2C5</color>
+    <color name="shadow_ice_glow">#40AEE7F5</color>
     <color name="divider">#E5E5EA</color>
     <color name="border_light">#E5E5EA</color>
     <color name="border_medium">#C7C7CC</color>

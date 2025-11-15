@@ -19,6 +19,8 @@ import android.speech.tts.TextToSpeech;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -120,6 +122,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize accident detection variables
         siren = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+
+        // Apply premium animations
+        startPremiumAnimations();
     }
 
     private void initializeViews() {
@@ -1007,5 +1012,43 @@ public class MainActivity extends AppCompatActivity {
         } else {
             tvLocationStatus.setText(R.string.location_gps_inactive);
         }
+    }
+
+    /**
+     * Premium UI Animations: Breathing avatar, pulse detection, slide-in cards.
+     */
+    private void startPremiumAnimations() {
+        // 1. Breathing animation for profile avatar
+        if (ivProfilePhoto != null) {
+            Animation breathingAnim = AnimationUtils.loadAnimation(this, R.anim.breathing_animation);
+            ivProfilePhoto.startAnimation(breathingAnim);
+        }
+
+        // 2. Pulse animation for detection status icon
+        if (ivDetectionIcon != null) {
+            Animation pulseAnim = AnimationUtils.loadAnimation(this, R.anim.pulse_animation);
+            ivDetectionIcon.startAnimation(pulseAnim);
+        }
+
+        // 3. Slide-in animation for cards with stagger effect
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (cardLocationStatus != null) {
+                    Animation slideIn = AnimationUtils.loadAnimation(MainActivity.this, R.anim.slide_in_up);
+                    cardLocationStatus.startAnimation(slideIn);
+                }
+            }
+        }, 100);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (cardEmergencyContacts != null) {
+                    Animation slideIn = AnimationUtils.loadAnimation(MainActivity.this, R.anim.slide_in_up);
+                    cardEmergencyContacts.startAnimation(slideIn);
+                }
+            }
+        }, 200);
     }
 }

@@ -3,212 +3,221 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="@color/background">
+
+    <!-- Premium Gradient Header Background -->
+    <View
+        android:id="@+id/headerGradient"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:background="@drawable/gradient_premium_teal"
+        android:alpha="0.15" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomNavigation">
+        android:layout_above="@+id/bottomNavigation"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="24dp">
 
-            <!-- Header Section -->
-            <LinearLayout
+            <!-- ========== PREMIUM HEADER SECTION ========== -->
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="16dp"
-                android:background="@android:color/white"
-                android:elevation="2dp">
+                android:paddingTop="8dp"
+                android:paddingBottom="24dp">
 
+                <!-- Welcome Text -->
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tvWelcome"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Welcome"
+                        android:text="Welcome Back"
                         android:textSize="14sp"
-                        android:textColor="#666666" />
+                        android:textColor="@color/text_tertiary"
+                        android:letterSpacing="0.03"
+                        android:fontFamily="sans-serif-medium" />
 
                     <TextView
                         android:id="@+id/tvName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="User"
-                        android:textSize="20sp"
+                        android:textSize="24sp"
                         android:textStyle="bold"
-                        android:textColor="#000000"
-                        android:layout_marginTop="4dp" />
+                        android:textColor="@color/text_primary"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="-0.01" />
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/ivProfilePhoto"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_person"
-                    android:background="@drawable/circle_background"
-                    android:padding="8dp" />
+                <!-- Notification Bell with Badge -->
+                <RelativeLayout
+                    android:id="@+id/btnNotifications"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="64dp"
+                    android:background="@drawable/bg_glass_card"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:elevation="4dp">
 
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerInParent="true"
+                        android:src="@android:drawable/ic_popup_reminder"
+                        app:tint="@color/text_primary"
+                        android:contentDescription="Notifications" />
+
+                    <!-- Bouncing Alert Dot -->
+                    <View
+                        android:id="@+id/notificationDot"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/circle_background"
+                        android:backgroundTint="@color/emergency_red"
+                        android:visibility="visible" />
+                </RelativeLayout>
+
+                <!-- Settings Button -->
                 <ImageButton
                     android:id="@+id/btnSettings"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="8dp"
                     android:src="@android:drawable/ic_menu_manage"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:layout_marginStart="8dp"
-                    android:contentDescription="Settings" />
-            </LinearLayout>
+                    android:background="@drawable/bg_glass_card"
+                    app:tint="@color/text_primary"
+                    android:contentDescription="Settings"
+                    android:elevation="4dp" />
 
-            <!-- Emergency Call Button -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnEmergencyCall"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text=" EMERGENCY CALL"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:backgroundTint="#E63946"
-                android:layout_marginTop="16dp"
-                app:cornerRadius="8dp" />
+                <!-- Premium Avatar with Glow (will have breathing animation) -->
+                <ImageView
+                    android:id="@+id/ivProfilePhoto"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="64dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_person"
+                    android:background="@drawable/bg_avatar_glow"
+                    android:padding="12dp"
+                    android:scaleType="centerCrop"
+                    android:elevation="6dp"
+                    android:contentDescription="Profile Photo" />
+            </RelativeLayout>
 
-            <!-- Test Accident Button -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnTestAccident"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Test Accident Detection"
-                android:backgroundTint="#FF9500"
-                android:layout_marginTop="8dp"
-                app:cornerRadius="8dp" />
-
-            <!-- Patient ID Card -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:background="@android:color/white"
-                android:elevation="2dp"
-                android:layout_marginTop="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Patient Information"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/tvPatientId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Patient ID: —"
-                    android:textSize="14sp"
-                    android:textColor="#666666"
-                    android:layout_marginTop="8dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="8dp">
-
-                    <TextView
-                        android:id="@+id/tvAge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="14sp"
-                        android:textColor="#666666" />
-
-                    <TextView
-                        android:id="@+id/tvBloodGroup"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="14sp"
-                        android:textColor="#666666"
-                        android:layout_marginStart="16dp" />
-                </LinearLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnEditProfile"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Edit Profile"
-                    android:layout_marginTop="8dp"
-                    app:cornerRadius="8dp" />
-            </LinearLayout>
-
-            <!-- Location Status Card -->
+            <!-- ========== LIVE DETECTION INDICATOR (PULSING) ========== -->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardLocationStatus"
+                android:id="@+id/btnDetection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardElevation="2dp"
-                app:cardCornerRadius="8dp"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="28dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="@color/white"
                 android:clickable="true"
                 android:focusable="true">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:gravity="center_vertical">
+                    android:padding="24dp">
+
+                    <!-- Pulse Ring Indicator (will animate) -->
+                    <ImageView
+                        android:id="@+id/ivDetectionIcon"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_heart_pulse"
+                        android:background="@drawable/bg_pulse_ring"
+                        android:padding="16dp"
+                        android:contentDescription="Detection Status" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_toEndOf="@id/ivDetectionIcon"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Auto Location Sharing"
-                            android:textSize="16sp"
+                            android:text="Live Detection"
+                            android:textSize="18sp"
                             android:textStyle="bold"
-                            android:textColor="#000000" />
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif-medium" />
 
                         <TextView
-                            android:id="@+id/tvLocationStatus"
+                            android:id="@+id/tvDetectionStatus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="GPS: Inactive"
+                            android:text="Monitoring Active"
                             android:textSize="14sp"
-                            android:textColor="#666666"
-                            android:layout_marginTop="4dp" />
+                            android:textColor="@color/neon_teal"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="sans-serif" />
                     </LinearLayout>
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switchLocation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
+                </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Emergency Contacts Card -->
+            <!-- ========== EMERGENCY CALL BUTTON (GLOWING) ========== -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEmergencyCall"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:text="🚨 EMERGENCY CALL"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_emergency_glow"
+                android:elevation="12dp"
+                android:layout_marginBottom="16dp"
+                android:letterSpacing="0.05"
+                android:fontFamily="sans-serif-medium"
+                app:cornerRadius="36dp"
+                app:icon="@drawable/ic_emergency_call"
+                app:iconSize="28dp"
+                app:iconGravity="textStart"
+                app:iconTint="@color/white" />
+
+            <!-- ========== PATIENT INFO CARD (GLASSMORPHISM) ========== -->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardEmergencyContacts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardElevation="2dp"
-                app:cardCornerRadius="8dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@color/white"
                 android:clickable="true"
                 android:focusable="true">
 
@@ -216,103 +225,371 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="24dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Emergency Contacts"
-                        android:textSize="16sp"
+                        android:text="Medical Profile"
+                        android:textSize="18sp"
                         android:textStyle="bold"
-                        android:textColor="#000000" />
+                        android:textColor="@color/text_primary"
+                        android:fontFamily="sans-serif-medium"
+                        android:drawableStart="@drawable/ic_medical_info"
+                        android:drawablePadding="12dp"
+                        android:drawableTint="@color/neon_teal" />
 
-                    <TextView
-                        android:id="@+id/tvContactsCount"
+                    <!-- Patient ID with Premium Badge -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/gradient_ice_blue"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_patient_id"
+                            app:tint="@color/white"
+                            android:contentDescription="Patient ID" />
+
+                        <TextView
+                            android:id="@+id/tvPatientId"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="ID: EMG-XXXX-XXXX"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:layout_marginStart="12dp"
+                            android:fontFamily="monospace"
+                            android:letterSpacing="0.05" />
+                    </LinearLayout>
+
+                    <!-- Age & Blood Group -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tvAge"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Age: --"
+                            android:textSize="15sp"
+                            android:textColor="@color/text_secondary"
+                            android:fontFamily="sans-serif" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="24dp"
+                            android:background="@color/divider"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:id="@+id/tvBloodGroup"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Blood: --"
+                            android:textSize="15sp"
+                            android:textColor="@color/text_secondary"
+                            android:fontFamily="sans-serif" />
+                    </LinearLayout>
+
+                    <!-- Edit Profile Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnEditProfile"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:text="Edit Profile"
+                        android:textColor="@color/neon_teal"
+                        android:layout_marginTop="16dp"
+                        app:cornerRadius="16dp"
+                        app:strokeColor="@color/neon_teal"
+                        app:strokeWidth="2dp"
+                        app:icon="@drawable/ic_edit_profile"
+                        app:iconTint="@color/neon_teal" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ========== QUICK ACTIONS GRID ========== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quick Actions"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                android:layout_marginBottom="12dp"
+                android:fontFamily="sans-serif-medium" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="12dp">
+
+                <!-- Test Accident Button -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_emergency"
+                            app:tint="@color/accent_orange"
+                            android:contentDescription="Test Accident" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnTestAccident"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Test\nAccident"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"
+                            android:gravity="center"
+                            android:layout_marginTop="8dp"
+                            android:minHeight="0dp"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Find Hospitals Button -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_hospital"
+                            app:tint="@color/primary_blue"
+                            android:contentDescription="Find Hospitals" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnFindHospitals"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Find\nHospitals"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"
+                            android:gravity="center"
+                            android:layout_marginTop="8dp"
+                            android:minHeight="0dp"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- ========== LOCATION STATUS CARD ========== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardLocationStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/white"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="20dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_location_pulse"
+                        android:contentDescription="Location" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Auto Location"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif-medium" />
+
+                        <TextView
+                            android:id="@+id/tvLocationStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="GPS: Inactive"
+                            android:textSize="13sp"
+                            android:textColor="@color/text_tertiary"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="No contacts added"
-                        android:textSize="14sp"
-                        android:textColor="#666666"
-                        android:layout_marginTop="4dp" />
+                        android:theme="@style/SwitchTheme" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ========== EMERGENCY CONTACTS CARD ========== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardEmergencyContacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/white"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_contacts_glow"
+                            android:contentDescription="Emergency Contacts" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Emergency Contacts"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium" />
+
+                            <TextView
+                                android:id="@+id/tvContactsCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="No contacts added"
+                                android:textSize="13sp"
+                                android:textColor="@color/text_tertiary"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                    </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnManageContacts"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
                         android:text="Manage Contacts"
-                        android:layout_marginTop="8dp"
-                        app:cornerRadius="8dp" />
+                        android:textColor="@color/ice_blue_dark"
+                        android:layout_marginTop="16dp"
+                        app:cornerRadius="16dp"
+                        app:strokeColor="@color/ice_blue_dark"
+                        app:strokeWidth="2dp"
+                        app:icon="@drawable/ic_contacts"
+                        app:iconTint="@color/ice_blue_dark" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Quick Actions -->
-            <LinearLayout
+            <!-- ========== SHARE DETAILS BUTTON ========== -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnShareDetails"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:background="@android:color/white"
-                android:elevation="2dp"
-                android:layout_marginTop="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Quick Actions"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnShareDetails"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Share Medical Details"
-                    android:layout_marginTop="8dp"
-                    app:cornerRadius="8dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnFindHospitals"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Find Nearby Hospitals"
-                    android:layout_marginTop="8dp"
-                    app:cornerRadius="8dp" />
-            </LinearLayout>
-
-            <!-- Hidden detection elements -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btnDetection"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/tvDetectionStatus"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/ivDetectionIcon"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:visibility="gone"
-                android:contentDescription="Detection Icon" />
+                android:layout_height="56dp"
+                android:text="Share Medical Details"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/gradient_premium_teal"
+                android:layout_marginBottom="16dp"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_share"
+                app:iconTint="@color/white"
+                app:iconGravity="textStart" />
 
         </LinearLayout>
     </ScrollView>
 
+    <!-- ========== BOTTOM NAVIGATION ========== -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="64dp"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/white"
-        android:elevation="8dp"
+        android:background="@color/white"
+        android:elevation="16dp"
+        app:itemIconTint="@color/neon_teal"
+        app:itemTextColor="@color/text_primary"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_navigation" />
 
 </RelativeLayout>

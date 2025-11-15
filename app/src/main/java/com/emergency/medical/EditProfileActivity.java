@@ -7,8 +7,10 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,7 +31,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private static final int REQUEST_STORAGE_PERMISSION = 2;
 
     private DataManager dataManager;
-    private TextInputEditText etName, etAge, etBloodGroup, etAddress;
+    private TextInputEditText etName, etAge, etAddress;
+    private Spinner spinnerBloodGroup;
     private TextInputEditText etAllergies, etMedications, etConditions, etDoctorName, etDoctorPhone;
     private ImageView ivProfilePhoto;
     private ImageButton btnBack;
@@ -43,6 +46,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         dataManager = new DataManager(this);
         initializeViews();
+        setupBloodGroupSpinner();
         loadData();
         setupListeners();
     }
@@ -53,7 +57,7 @@ public class EditProfileActivity extends AppCompatActivity {
         // Personal Info fields
         etName = findViewById(R.id.etName);
         etAge = findViewById(R.id.etAge);
-        etBloodGroup = findViewById(R.id.etBloodGroup);
+        spinnerBloodGroup = findViewById(R.id.spinnerBloodGroup);
         etAddress = findViewById(R.id.etAddress);
         ivProfilePhoto = findViewById(R.id.ivProfilePhoto);
         btnSelectPhoto = findViewById(R.id.btnSelectPhoto);
@@ -68,6 +72,14 @@ public class EditProfileActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
     }
 
+    private void setupBloodGroupSpinner() {
+        String[] bloodGroups = {"Select Blood Group", "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, bloodGroups);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerBloodGroup.setAdapter(adapter);
+    }
+
     private void loadData() {
         PersonalInfo personalInfo = dataManager.getPersonalInfo();
         MedicalInfo medicalInfo = dataManager.getMedicalInfo();
@@ -75,7 +87,17 @@ public class EditProfileActivity extends AppCompatActivity {
         // Load personal info
         etName.setText(personalInfo.getName());
         etAge.setText(personalInfo.getAge());
-        etBloodGroup.setText(personalInfo.getBloodGroup());
+
+        // Set blood group spinner selection
+        String bloodGroup = personalInfo.getBloodGroup();
+        if (!bloodGroup.isEmpty()) {
+            ArrayAdapter adapter = (ArrayAdapter) spinnerBloodGroup.getAdapter();
+            int position = adapter.getPosition(bloodGroup);
+            if (position >= 0) {
+                spinnerBloodGroup.setSelection(position);
+            }
+        }
+
         etAddress.setText(personalInfo.getAddress());
 
         if (!personalInfo.getPhotoUri().isEmpty()) {
@@ -119,11 +141,17 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void saveData() {
+        // Get blood group from spinner
+        String bloodGroup = "";
+        if (spinnerBloodGroup.getSelectedItemPosition() > 0) {
+            bloodGroup = spinnerBloodGroup.getSelectedItem().toString();
+        }
+
         // Save personal info
         PersonalInfo personalInfo = new PersonalInfo(
                 etName.getText().toString().trim(),
                 etAge.getText().toString().trim(),
-                etBloodGroup.getText().toString().trim(),
+                bloodGroup,
                 etAddress.getText().toString().trim(),
                 selectedImageUri != null ? selectedImageUri.toString() : ""
         );

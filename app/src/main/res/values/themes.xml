@@ -204,4 +204,12 @@
         <item name="android:textSize">20sp</item>
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
+
+    <!-- ========== SWITCH STYLES ========== -->
+
+    <style name="SwitchTheme">
+        <item name="colorControlActivated">@color/neon_teal</item>
+        <item name="colorSwitchThumbNormal">@color/text_tertiary</item>
+        <item name="android:colorForeground">@color/neon_teal</item>
+    </style>
 </resources>

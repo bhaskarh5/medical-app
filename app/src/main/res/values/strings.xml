@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AccidentAid</string>
+    <string name="app_name">LifeGuard Assist</string>
     <string name="app_tagline">Your Emergency Guardian</string>
 
     <!-- Main Screen -->
-    <string name="emergency_call">🚨 CALL EMERGENCY</string>
-    <string name="action_emergency_call">🚨 CALL EMERGENCY</string>
+    <string name="emergency_call">🚨 EMERGENCY CALL</string>
+    <string name="action_emergency_call">🚨 EMERGENCY CALL</string>
     <string name="share_details">Share Medical Details</string>
     <string name="action_share_details">Share Medical Details</string>
     <string name="edit_profile">Edit Profile</string>
@@ -108,10 +108,10 @@
     <string name="clear_history">Clear History</string>
     <string name="settings_clear_history_confirmation">Incident history cleared</string>
     <string name="settings_clear_history_message">This will remove all stored incident records from this device.</string>
-    <string name="about_app">About AccidentAid</string>
-    <string name="settings_about_title">About AccidentAid</string>
-    <string name="settings_about_message">AccidentAid helps first responders access your critical medical information instantly. Keep your profile, contacts, and preferences up to date for the best experience.</string>
-    <string name="app_version">Version 1.0 2025 AccidentAid Team</string>
+    <string name="about_app">About LifeGuard Assist</string>
+    <string name="settings_about_title">About LifeGuard Assist</string>
+    <string name="settings_about_message">LifeGuard Assist helps first responders access your critical medical information instantly. Keep your profile, contacts, and preferences up to date for the best experience.</string>
+    <string name="app_version">Version 1.0 2025 LifeGuard Assist Team</string>
     <string name="settings_unavailable">Settings coming soon!</string>
 
     <!-- Alerts -->
